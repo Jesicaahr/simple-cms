@@ -4,18 +4,42 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Perusahaan extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
     }
   };
   Perusahaan.init({
-    nama: DataTypes.STRING,
-    kode: DataTypes.STRING
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: `Mohon masukkan nama perusahaan`,
+        },
+        notEmpty: {
+          args: true,
+          msg: `Mohon masukkan nama perusahaan`,
+        },
+      },
+    } ,
+    kode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        args: true,
+        msg: "Kode perusahaan tidak boleh sama"
+      },
+      validate: {
+        notNull: {
+          args: true,
+          msg: `Mohon masukkan kode perusahaan`,
+        },
+        notEmpty: {
+          args: true,
+          msg: `Mohon masukkan kode perusahaan`,
+        },
+      },
+    }
   }, {
     sequelize,
     modelName: 'Perusahaan',

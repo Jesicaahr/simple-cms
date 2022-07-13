@@ -2,17 +2,15 @@ const {Perusahaan} = require('../models')
 
 class PerusahaanControllers {
     static async addPerusahaan (req, res, next) {
-        const { nama, harga, stock } = req.body
+        const { nama, kode } = req.body
         try {
-            const newBarang = await Barang.create({
-                nama, harga, stock
+            const newPerusahaan = await Perusahaan.create({
+                nama, kode
             })
             return res.status(201).json({
-                message: "Sukses menambahkan barang",
-                newBarang
+                message: "Sukses menambahkan perusahaan",
+                newPerusahaan
             })
-            
-            
         } catch (error) {
             return next(error)
         }
@@ -20,9 +18,9 @@ class PerusahaanControllers {
     }
     static async showAllPerusahaan (req, res, next) {
         try {
-            const barang = await Barang.findAll()
+            const perusahaan = await Perusahaan.findAll()
             return res.status(200).json({
-                barang
+                perusahaan
             })
             
         } catch (error) {
