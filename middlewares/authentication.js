@@ -31,7 +31,7 @@ function authentication(req, res, next) {
     catch(err) {
         return next({
             name : 'JsonWebTokenError',
-            errors: [{message: "Please login first"}]
+            errors: [{message: "Silahkan login terlebih dahulu"}]
         })
     }
 }
