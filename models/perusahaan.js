@@ -43,6 +43,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Perusahaan',
+    hooks: {
+      beforeCreate(perusahaan, option) {
+        perusahaan.nama = perusahaan.nama.toLowerCase()
+        perusahaan.kode = perusahaan.kode.toLowerCase()
+      }
+    }
   });
   return Perusahaan;
 };

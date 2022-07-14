@@ -68,6 +68,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Barang',
+	hooks: {
+		beforeCreate(barang, option) {
+		  barang.nama = barang.nama.toLowerCase()
+		}
+	}
   });
   return Barang;
 };
